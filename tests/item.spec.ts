@@ -13,9 +13,14 @@ describe('Testing Item Service method getItem', () => {
 
 describe('Testing Item Service method getItemById', () => {
   it('Returns a object', (done) => {
-    ItemService.getItemById('MLA899362191').then((res: any) => {
-      expect(res).to.be.an('object');
-      done();
-    });
+    ItemService.getItem('macbook', 4)
+      .then((res: any) => res.items)
+      .then((items: any) => {
+        const id: string = items[0].id;
+        ItemService.getItemById(id).then((res: any) => {
+          expect(res).to.be.an('object');
+          done();
+        });
+      });
   });
 });
