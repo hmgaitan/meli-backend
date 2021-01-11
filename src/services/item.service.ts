@@ -1,23 +1,23 @@
-import { ItemList } from "../models/item-list";
-import { ItemResponse } from "../models/item-response";
-import { ItemDetail } from "../models/item-detail";
-import { Price } from "../models/price";
-import { Author } from "../models/author";
-import ConnectionAPI from "./api.service";
-import CurrencyService from "./currency.service";
+import { ItemList } from '../models/item-list';
+import { ItemResponse } from '../models/item-response';
+import { ItemDetail } from '../models/item-detail';
+import { Price } from '../models/price';
+import { Author } from '../models/author';
+import ConnectionAPI from './api.service';
+import CurrencyService from './currency.service';
 
-const products = { getItemById, getItem };
+const items = { getItemById, getItem };
 const author = new Author();
 
 function getItemById(id: string) {
   let request = {
-    method: "items",
-    type: "url",
+    method: 'items',
+    type: 'url',
     params: id,
   };
 
   return new Promise((resolve, reject) => {
-    ConnectionAPI.senderRequest(request, "GET")
+    ConnectionAPI.senderRequest(request, 'GET')
       .then((data: any) => {
         let currencyList: Array<any> = [];
         let itemData: ItemDetail = new ItemDetail(
@@ -28,11 +28,11 @@ function getItemById(id: string) {
           data.condition,
           data.shipping.free_shipping,
           data.sold_quantity,
-          "",
+          '',
           []
         );
 
-        request.params = id + "/description";
+        request.params = id + '/description';
 
         CurrencyService.getCurrencyList()
           .then((response: any) => {
@@ -100,7 +100,7 @@ function getItemById(id: string) {
 
 function getProductDescriptionById(request: any) {
   return new Promise((resolve, reject) => {
-    ConnectionAPI.senderRequest(request, "GET")
+    ConnectionAPI.senderRequest(request, 'GET')
       .then((data: any) => {
         resolve(data.plain_text);
       })
@@ -112,17 +112,17 @@ function getProductDescriptionById(request: any) {
 
 function getItem(searchText: string, amountResultMax: number) {
   let request = {
-    method: "sites/MLA/search",
-    type: "query",
+    method: 'sites/MLA/search',
+    type: 'query',
     params: {
       q: searchText,
     },
   };
 
   return new Promise((resolve, reject) => {
-    ConnectionAPI.senderRequest(request, "GET")
+    ConnectionAPI.senderRequest(request, 'GET')
       .then((data: any) => {
-        const categoryId: string = data.results[0].category_id || "MLA82085";
+        const categoryId: string = data.results[0].category_id || 'MLA82085';
 
         getCategoryDataById(categoryId)
           .then((categoryList: any) => {
@@ -182,13 +182,13 @@ function getItem(searchText: string, amountResultMax: number) {
 
 function getCategoryDataById(id: string) {
   let request = {
-    method: "categories",
-    type: "url",
+    method: 'categories',
+    type: 'url',
     params: id,
   };
 
   return new Promise((resolve, reject) => {
-    ConnectionAPI.senderRequest(request, "GET")
+    ConnectionAPI.senderRequest(request, 'GET')
       .then((data: any) => {
         resolve(data.path_from_root);
       })
@@ -213,7 +213,7 @@ function getProductResponseFormatted(
         return currency.id == data.results[i].currency_id;
       });
       let amountDecimals: number = currency ? currency.decimal_places : 0;
-      let symbol: string = currency ? currency.symbol : "";
+      let symbol: string = currency ? currency.symbol : '';
       listItems.push(
         new ItemList(
           data.results[i].id,
@@ -231,4 +231,4 @@ function getProductResponseFormatted(
   return new ItemResponse(author, categoryList, listItems);
 }
 
-export { products as default };
+export { items as default };

@@ -1,5 +1,5 @@
-import { Price } from "./price";
-import { Item } from "./item";
+import { Price } from './price';
+import { Item } from './item';
 
 export class ItemDetail extends Item {
   sold_quantity: number;

@@ -1,3 +1,7 @@
-## Run npm install
+# MELI Backend project
 
-## Run npm start
+## Install all npm package with npm i
+
+## Run 'npm start'
+
+## For test run 'npm run test'

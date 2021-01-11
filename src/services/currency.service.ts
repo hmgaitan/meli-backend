@@ -1,4 +1,4 @@
-import ConnectionAPI from "./api.service";
+import ConnectionAPI from './api.service';
 const currency = {
   getCurrencyList,
   reloadCurrencyList,
@@ -12,17 +12,17 @@ function getCurrencyList() {
       resolve(currencyList);
     } else {
       let request = {
-        method: "currencies",
-        type: "url",
-        params: "",
+        method: 'currencies',
+        type: 'url',
+        params: '',
       };
-      ConnectionAPI.senderRequest(request, "GET")
+      ConnectionAPI.senderRequest(request, 'GET')
         .then((data: any) => {
           currencyList = data;
           resolve(currencyList);
         })
         .catch((error: any) => {
-          reject("No se puedo obtener la lista de tipo de cambio");
+          reject('No se puedo obtener la lista de tipo de cambio');
         });
     }
   });

@@ -1,5 +1,5 @@
-import { Item } from "./item";
-import { Author } from "./author";
+import { Item } from './item';
+import { Author } from './author';
 
 export class ItemResponse {
   author: Author;

@@ -1,9 +1,9 @@
-import * as dotenv from "dotenv";
-import express from "express";
-import cors from "cors";
-import helmet from "helmet";
-import CurrencyService from "./src/services/currency.service";
-import routes from "./src/routes";
+import * as dotenv from 'dotenv';
+import express from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+import CurrencyService from './src/services/currency.service';
+import routes from './src/routes';
 
 dotenv.config();
 
@@ -20,13 +20,13 @@ const app: express.Application = express();
 // Cors config
 const options: cors.CorsOptions = {
   allowedHeaders: [
-    "Origin",
-    "X-Requested-With",
-    "Content-Type",
-    "Accept",
-    "X-Access-Token",
+    'Origin',
+    'X-Requested-With',
+    'Content-Type',
+    'Accept',
+    'X-Access-Token',
   ],
-  methods: "GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE",
+  methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
   preflightContinue: false,
 };
 
@@ -34,7 +34,7 @@ const options: cors.CorsOptions = {
 app.use(helmet());
 app.use(cors(options));
 app.use(express.json());
-app.use("/api", cors(options), routes);
+app.use('/api', cors(options), routes);
 
 // Listen express
 app.listen(PORT, () => {

@@ -3,7 +3,7 @@ export class Author {
   lastName: string;
 
   constructor(name?: string, lastName?: string) {
-    this.name = name || "Maximiliano";
-    this.lastName = lastName || "Gaitan";
+    this.name = name || 'Maximiliano';
+    this.lastName = lastName || 'Gaitan';
   }
 }

@@ -1,5 +1,5 @@
-import RequestPromise from "request-promise";
-import * as dotenv from "dotenv";
+import RequestPromise from 'request-promise';
+import * as dotenv from 'dotenv';
 
 dotenv.config();
 
@@ -10,12 +10,12 @@ const connectionApi = {
 };
 
 function formatParams(params: any[]): string {
-  let paramsFormatted = "";
+  let paramsFormatted = '';
   const index = 0;
 
   for (const property in params) {
-    paramsFormatted += index == 0 ? "" : "&";
-    paramsFormatted += property + "=" + params[property];
+    paramsFormatted += index == 0 ? '' : '&';
+    paramsFormatted += property + '=' + params[property];
   }
 
   return paramsFormatted;
@@ -28,11 +28,11 @@ function getContextApi(config: any, method: string): any {
   };
 
   switch (config.type) {
-    case "query":
-      options.uri += config.method + "?" + formatParams(config.params);
+    case 'query':
+      options.uri += config.method + '?' + formatParams(config.params);
       break;
-    case "url":
-      options.uri += config.method + "/" + config.params;
+    case 'url':
+      options.uri += config.method + '/' + config.params;
       break;
     default:
       options.uri += config.method;
@@ -51,10 +51,10 @@ function senderRequest(options: any, method: string) {
         if (data) {
           resolve(JSON.parse(data));
         }
-        reject("Ocurrio un error al procesar los datos");
+        reject('Ocurrio un error al procesar los datos');
       })
       .catch((error: any) => {
-        reject("Ocurrio un error al obtener los datos");
+        reject('Ocurrio un error al obtener los datos');
       });
   });
 }
